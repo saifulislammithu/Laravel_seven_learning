@@ -17,9 +17,14 @@
                     {{ __('You are logged in!') }}
                 </div>
                 <div class="card-body">
-                    <form action="/upload"method="POST" enctype="multipart/form-data">
+                    <!-- @include('layouts.flash') -->
+                    <x-alert>
+                        <p>Here is reponse from upload image</p>
+                    </x-alert>
+
+                <form action="/profile" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input type="file" name="image" />
+                    <input type="file"name="image" />
                     <input type="submit" value="Upload "/>
                     
                 </form>

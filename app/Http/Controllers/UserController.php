@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
 
 class UserController extends Controller
 {
+    
     public function index()
     {
         // Eloquent operation for Data insert and update in Database.
@@ -20,8 +23,8 @@ class UserController extends Controller
 
 
         // Eloquent operation for fetch Data from Database.
-        $data=User::all();
-        return $data;
+        // $data=User::all();
+        // return $data;
 
     //     DB::insert('insert into users (name,email,password) values(?,?,?)',['Saiful','saifulrubd@gmail.com','password']);
     //    return view('user');
@@ -31,5 +34,16 @@ class UserController extends Controller
     //    $data=DB::select('select * from users ');
     //    return $data;
        return view('home');
+    }
+
+    public function upload_profile_image(Request $request)
+    {
+        if($request->hasFile('image'))
+        {
+           User::upload_profile_image($request->image);
+           
+           return redirect()->back()->with('message', 'Image uploaded successful!');
+        }
+        return redirect()->back()->with('error', 'Image  NOT uploaded !');
     }
 }

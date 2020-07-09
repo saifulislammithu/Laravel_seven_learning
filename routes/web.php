@@ -1,6 +1,10 @@
 <?php
 
-use GuzzleHttp\Psr7\Request;
+//use GuzzleHttp\Psr7\Request;
+
+use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home','UserController@index');
-Auth::routes();
+Route::get('/user','UserController@index');
+
+Auth::Routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/upload',function( Request $request){
-    dd($request->file);
-});
+
+Route::post('/profile','UserController@upload_profile_image');
