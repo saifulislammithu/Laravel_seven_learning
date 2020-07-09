@@ -44,15 +44,11 @@ class User extends Authenticatable
         $image->storeAs('images',$fileName,'public');
         auth()->user()->update(['profile_image'=>$fileName]);
     }
-    protected function deleteOldImage()
-    {
+    protected function deleteOldImage(){
         if($this->profile_image)
-            {
-                Storage::delete('/public/images/'.$this->profile_image);
-                
+        {
+        Storage::delete('/public/images/'.$this->profile_image);
     }
     }
-
-    
 }
 
