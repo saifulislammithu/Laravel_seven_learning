@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,6 @@ Route::get('home','UserController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/upload',function( Request $request){
+    dd($request->file);
+});
