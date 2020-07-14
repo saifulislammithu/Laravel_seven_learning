@@ -18,19 +18,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/todos','TodoController@index');
+Route::get('/todos','TodoController@index')->name('todo.index');
 Route::get('/todos/create','TodoController@create');
-Route::get('/todos/{id}/edit','TodoController@edit');
+Route::get('/todos/{todo}/edit','TodoController@edit');
 Route::post('/todos/create','TodoController@store');
+Route::patch('todos/{todo}/update','TodoController@update')->name('todo.update');
 
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/user','UserController@index');
-
 Auth::Routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::post('/profile','UserController@upload_profile_image');

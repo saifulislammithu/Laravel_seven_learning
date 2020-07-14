@@ -22,13 +22,17 @@ class TodoController extends Controller
     }
     public function edit(Todo $todo)
     {
-        dd($todo->title);
         return view('todos.edit',compact('todo'));
     }
     public function store(TodoCreateRequest $request)
     {
         Todo::create($request->all());
         return redirect()->back()->with('message','Todo created successfully');
+    }
+    public function update(Request $request ,Todo $todo)
+    {
+        $todo->update(['title'=>$request->title]);
+        return redirect(route('todo.index'))->with('message','Updated');
     }
 }
 
